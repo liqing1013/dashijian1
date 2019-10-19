@@ -62,20 +62,23 @@
             password: password,
           },
           success: function (ooo) {
+            // console.log(ooo);
             // 判断，当失败时
             if (ooo.code === 400) {
-              alert(ooo.msg)
-            } else if (ooo.code === 200) {
+              // console.log(ooo);
               alert(ooo.msg);
-              // 本次缓存
-              window.localStorage.setItem('Token', ooo.token);
-              // 跳转
-              window.location.href = './index.html';
+            } else if (ooo.code === 200) {
+              console.log(ooo);
+              alert(ooo.msg);
+            // 本次缓存
+            window.localStorage.setItem('token', ooo.token);
+            // 跳转
+            window.location.href = './index.html';
             }
-
           }
         })
       })
+
 
 
 
