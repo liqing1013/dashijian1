@@ -37,7 +37,50 @@
       </form>
     </div>
   </div>
+  <script>
+    $(function () {
+      // 用户登录
+      // 登录按钮注册点击事件
+      $('.input_sub').click(function (e) {
+        // 阻止submit提交
+        e.preventDefault();
+        // 手机号
+        var tel = $('.input_txt').val().trim();
+        // 密码
+        var password = $('.input_pass').val().trim();
+        // 做判断，为空时弹出
+        if (tel === '' || password === '') {
+          alert('写点内容呗');
+          return;
+        }
+        // 不为空时。调用接口函数
+        $.ajax({
+          url: 'http://localhost:8080/api/v1/admin/user/login',
+          type: 'post',
+          data: {
+            username: tel,
+            password: password,
+          },
+          success: function (ooo) {
+            // 判断，当失败时
+            if (ooo.code === 400) {
+              alert(ooo.msg)
+            } else if (ooo.code === 200) {
+              alert(ooo.msg);
+              // 本次缓存
+              window.localStorage.setItem('Token', ooo.token);
+              // 跳转
+              window.location.href = './index.html';
+            }
 
+          }
+        })
+      })
+
+
+
+    })  
+  </script>
 </body>
 
 </html>
