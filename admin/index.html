@@ -60,6 +60,10 @@
         $('.level01:eq(1)').click(function(){
             $(this).next().slideToggle();
         })
+        //高亮显示
+        $('.level01').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        })
     
     </script>
 </body>
