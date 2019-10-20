@@ -31,6 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- 渲染的数据 -->
                     <tr>
                         <td>奇趣事</td>
                         <td>funny</td>
@@ -53,24 +54,84 @@
     </div>
 
 
+
+
+
+
+
+
+
+
+    <!--定义模板 -->
+    <script type='text/html' id='ooo'>
+
+        <!-- 循环遍历 -->
+        {{each data}}
+    <tr>
+        <td>{{$value.name}}</td>
+        <td>{{$value.slug}}</td>
+        <td class="text-center">
+            <a href="javascript:void(0);" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
+            <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
+        </td>
+    </tr>
+    {{/each}}
+    </script>
+
+
+
     <script>
-        // 获取所有文章类别
-        // $.ajax({
+        $(function () {
+            // 获取文章类别函数封装
+            function getArticle() {
+                // 获取所有文章类别
+                $.ajax({
+                    url: BigNew.category_list,
+                    success: function (res) {
+                        console.log(res);
+                        // 调用template函数,
+                        var str = template('ooo', res);
+                        // 渲染到html页面中
+                        $('tbody').html(str);
+                    },
+                })
+            }
+            // 调用获取所有文章类别的函数
+            getArticle();
+
+
+            // // 点击新增按钮，新增文章类别
+            // $('#xinzengfenlei').click(function () {
+
+
+            // })
 
 
 
-        // })
-
-
-        // 新增文章类别
 
 
 
 
 
 
-    
-    
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+
     </script>
 </body>>
+
 </html>
