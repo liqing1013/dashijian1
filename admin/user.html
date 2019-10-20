@@ -68,6 +68,55 @@
             </form>
         </div>
     </div>
+
+
+    <script>
+
+        $(function () {
+
+            // 个人中心用户详情获取
+            $.ajax({
+                url: BigNew.user_detail,
+                success: function (backData) {
+                    // console.log(backData);
+                    // 获取设置输入框中的个人信息
+                    // $('.username').val(backData.data.username);
+                    for (var key in backData.data) {
+                        $('.' + key).val(backData.data[key]);
+                    }
+                    // 单个设置头像
+                    $('.user_pic').attr('src', backData.data.userPic)
+                },
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+    </script>
 </body>
 
 </html>
