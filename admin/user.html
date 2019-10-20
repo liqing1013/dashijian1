@@ -90,6 +90,39 @@
             })
 
 
+            // 编辑用户信息--用户信息修改上传
+            $('.btn-success').click(function (e) {
+                // 给修改注册点击事件
+                // 阻止submit的提交事件
+                e.preventDefault();
+                // 使用FormDate步骤1： 找到form表单，获取表单中DOM节点对象
+                // var fd = document.querySelector('form');
+                var fd = $('form')[0];
+                // 使用FormDate步骤2： 实例化FormDate，将表单中的各项DOM节点对应值传入，
+                var formdata = new FormData(fd);
+                // 将这些值，使用ajax提供给接口
+                $.ajax({
+                    type: 'post',
+                    url: BigNew.user_edit,
+                    data: formdata,
+                    // 不设置类型
+                    contentType: false,
+                    // 不处理数据
+                    processData: false,
+                    success: function (backData) {
+                        console.log(backData);
+                        // ------------------------------新知识点：刷新页面---window.location.reload()
+                        // 刷新当前页面的父亲页面
+                        if (backData.code === 200) {
+                            window.parent.location.reload();
+                        }
+                    }
+                })
+            })
+
+
+            
+
 
 
 
