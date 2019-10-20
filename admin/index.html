@@ -62,14 +62,12 @@
         $(function () {
 
             // 给文章管理事件，兄弟元素的切换
-
             $('.level01:eq(1)').click(function () {
                 $(this).next().slideToggle();
             })
 
 
             //高亮显示
-
             $('.level01').click(function () {
                 $(this).addClass('active').siblings().removeClass('active');
             })
@@ -106,6 +104,21 @@
                 //     }
                 // }
             })
+        
+        
+        
+            // 退出登录
+            $('.logout').click(function(){
+                // 清除token数据
+                window.localStorage.removeItem('token');
+                // 返回登录页
+                window.location.href='./login.html';
+            })
+        
+        
+        
+        
+        
         })
     </script>
 </body>
