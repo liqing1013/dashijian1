@@ -32,14 +32,14 @@
                 </thead>
                 <tbody>
                     <!-- 渲染的数据 -->
-                    <tr>
+                    <!-- <tr>
                         <td>奇趣事</td>
                         <td>funny</td>
                         <td class="text-center">
                             <a href="javascript:void(0);" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
                             <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tfoot>
                     <tr>
@@ -104,7 +104,7 @@
         <td>{{$value.slug}}</td>
         <td class="text-center">
             <a href="javascript:void(0);" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
-            <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
+            <a href="javascript:void(0);"data-id='{{$value.id}}' class="btn btn-danger btn-xs ">删除</a>
         </td>
     </tr>
     {{/each}}
@@ -114,8 +114,12 @@
 
     <script>
         $(function () {
-            // 获取文章类别函数封装
+
+
+            //*********************************** 获取文章类别函数封装
             function getArticle() {
+               
+               
                 // 获取所有文章类别
                 $.ajax({
                     url: BigNew.category_list,
@@ -164,7 +168,28 @@
             })
 
 
+            // 删除文章类别
+            // 事件委托，给删除按钮的祖宗设置点击事件
+            $('tbody').on('click','.btn-danger',function(){
+                // 获取点击按钮的id
+                var id = $(this).attr('data-id');
+                console.log(id);
+                $.ajax({
+                    type:'post',
+                    url:BigNew.category_delete,
+                    data:{
+                        id:id,
+                    },
+                    success:function(res){
+                        console.log(res);
+                        if(res.code===204){
+                            getArticle();
+                        }
+                    }
+                })
 
+
+            })
 
 
 
