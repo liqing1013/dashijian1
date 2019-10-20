@@ -121,7 +121,16 @@
             })
 
 
-            
+            // 用户头像预览
+            $('#exampleInputFile').change(function () {
+                // 获取文件选择框，给其注册改变事件
+                // 找打文件对象
+                var fileobj = this.files[0];
+                // 创建临时url
+                var url = URL.createObjectURL(fileobj);
+                // 设置图片额预览属性为url
+                $(this).siblings('img').attr('src', url);
+            })
 
 
 
